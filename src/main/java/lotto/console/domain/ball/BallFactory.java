@@ -1,4 +1,4 @@
-package lotto.console.ball;
+package lotto.console.domain.ball;
 
 import java.util.List;
 import java.util.stream.Collectors;

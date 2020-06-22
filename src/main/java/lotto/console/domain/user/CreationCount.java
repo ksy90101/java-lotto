@@ -1,12 +1,12 @@
-package lotto.console.user;
+package lotto.console.domain.user;
 
 public class CreationCount {
 	private final int totalCount;
 	private final int automaticCount;
 	private final int manualCount;
 
-	public CreationCount(final int totalCount, final int manualCount) {
-		this.totalCount = totalCount;
+	public CreationCount(final Money money, final int manualCount) {
+		this.totalCount = money.getMoney() / 1000;
 		this.manualCount = manualCount;
 		this.automaticCount = totalCount - manualCount;
 	}

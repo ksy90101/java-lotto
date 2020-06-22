@@ -1,4 +1,4 @@
-package lotto.console.user;
+package lotto.console.domain.user;
 
 import static org.assertj.core.api.Assertions.*;
 
@@ -10,7 +10,7 @@ public class MoneyTest {
 	@DisplayName("돈이 제대로 생성되는지 확인하는 테스트")
 	@Test
 	void createCorrectMoney() {
-		Money money = new Money("1000");
+		Money money = new Money(1000);
 		assertThat(money.getMoney()).isEqualTo(1000);
 	}
 }

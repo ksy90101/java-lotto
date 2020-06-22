@@ -1,4 +1,4 @@
-package lotto.console.user;
+package lotto.console.domain.user;
 
 import static org.assertj.core.api.Assertions.*;
 
@@ -9,21 +9,21 @@ public class CreationCountTest {
 	@DisplayName("총 카운트가 생성되는지 확인하는 테스트")
 	@Test
 	void createCorrectTotalCountCreationCount(){
-		CreationCount creationCount = new CreationCount(5, 3);
+		CreationCount creationCount = new CreationCount(new Money(5000), 3);
 		assertThat(creationCount.getTotalCount()).isEqualTo(5);
 	}
 
 	@DisplayName("자동 생성 카운트가 생성되는지 확인하는 테스트")
 	@Test
 	void createCorrectAutomaticCountCreationCount(){
-		CreationCount creationCount = new CreationCount(5, 3);
+		CreationCount creationCount = new CreationCount(new Money(5000), 3);
 		assertThat(creationCount.getAutomaticCount()).isEqualTo(2);
 	}
 
 	@DisplayName("수동 생성 카운트가 생성되는지 확인하는 테스트")
 	@Test
 	void createCorrectManualCountCreationCount(){
-		CreationCount creationCount = new CreationCount(5, 3);
+		CreationCount creationCount = new CreationCount(new Money(5000), 3);
 		assertThat(creationCount.getManualCount()).isEqualTo(3);
 	}
 

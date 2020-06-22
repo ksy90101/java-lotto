@@ -1,4 +1,4 @@
-package lotto.console.ball;
+package lotto.console.domain.ball;
 
 import static org.assertj.core.api.Assertions.*;
 

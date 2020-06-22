@@ -1,4 +1,4 @@
-package lotto.console.ball;
+package lotto.console.domain.ball;
 
 public class Ball {
 	private final int number;
