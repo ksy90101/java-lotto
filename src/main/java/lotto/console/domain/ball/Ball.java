@@ -3,7 +3,7 @@ package lotto.console.domain.ball;
 public class Ball {
 	private final int number;
 
-	public Ball(int number) {
+	protected Ball(int number) {
 		this.number = number;
 	}
 

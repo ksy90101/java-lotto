@@ -13,4 +13,11 @@ public class MoneyTest {
 		Money money = new Money(1000);
 		assertThat(money.getMoney()).isEqualTo(1000);
 	}
+
+	@DisplayName("천원 단위로 입력하지 않았을 경우 예외처리")
+	@Test
+	void validateUnitThousandWon(){
+		assertThatThrownBy(() -> new Money(1100)).isInstanceOf(IllegalArgumentException.class)
+			.hasMessage("천원 단위로만 입력이 가능합니다. money = 1100");
+	}
 }
