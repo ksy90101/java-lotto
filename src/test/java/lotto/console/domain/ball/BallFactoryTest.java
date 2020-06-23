@@ -5,6 +5,7 @@ import static org.assertj.core.api.Assertions.*;
 import java.util.stream.IntStream;
 
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -27,5 +28,11 @@ public class BallFactoryTest {
 	void createIncorrectWhereBallOverFortyFiveAndLessThanOne(int ballNumber){
 		assertThatThrownBy(() -> BallFactory.of(ballNumber)).isInstanceOf(IllegalArgumentException.class)
 			.hasMessage("로또 볼은 1 ~ 45까지만 있습니다. ballNumber = " + ballNumber);
+	}
+
+	@DisplayName("6개의 로또볼을 생성하는 테스트")
+	@Test
+	void createRandomSixBalls(){
+		assertThat(BallFactory.createRandomSixBalls()).hasSize(6);
 	}
 }
