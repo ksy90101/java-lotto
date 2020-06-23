@@ -20,8 +20,8 @@ public class User {
 		return money.getMoney();
 	}
 
-	public CreationCount getCreationCount() {
-		return creationCount;
+	public List<LottoTicket> getLottoTickets() {
+		return lottoTickets;
 	}
 }
 
