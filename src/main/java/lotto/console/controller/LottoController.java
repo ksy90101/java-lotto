@@ -1,12 +1,12 @@
 package lotto.console.controller;
 
 import java.util.List;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 import lotto.console.converter.Converter;
-import lotto.console.domain.ball.Ball;
 import lotto.console.domain.ball.BallFactory;
 import lotto.console.domain.ball.WinningBalls;
 import lotto.console.domain.ticket.LottoTicket;
@@ -19,24 +19,27 @@ import lotto.console.view.InputView;
 import lotto.console.view.OutputView;
 
 public class LottoController {
-	public void run(){
-		Money money = createMoney();
-		CreationCount creationCount = createCreationCount(money);
-		List<String> manualLottoBallNumbers = IntStream.range(0, creationCount.getManualCount())
-			.mapToObj(n -> InputView.inputManualNumber())
-			.collect(Collectors.toList());
-		User user = new User(money, creationCount, Stream.concat(
-			createAutomaticLottoTickets(creationCount.getAutomaticCount()).stream(),
-			createManualLottoTickets(manualLottoBallNumbers).stream()
-		).collect(Collectors.toList()));
-		OutputView.printLottoTicket(user.getLottoTickets());
-		WinningBalls winningBalls = createWinningBalls();
-		List<Rank> ranks = user.calculateRanks(winningBalls);
-		Result result = new Result(money, ranks);
-		OutputView.printResult(result);
+	private final static Logger logger = Logger.getLogger("logger");
+
+	public void run() {
+		try {
+			Money money = createMoney();
+			CreationCount creationCount = createCreationCount(money);
+			User user = new User(money, creationCount, Stream.concat(
+				createAutomaticLottoTickets(creationCount.getAutomaticCount()).stream(),
+				createManualLottoTickets(creationCount.getManualCount()).stream()
+			).collect(Collectors.toList()));
+			OutputView.printLottoTicket(user.getLottoTickets());
+			WinningBalls winningBalls = createWinningBalls();
+			List<Rank> ranks = user.calculateRanks(winningBalls);
+			Result result = new Result(money, ranks);
+			OutputView.printResult(result);
+		} catch (IllegalArgumentException e) {
+			logger.warning(e.getMessage());
+		}
 	}
 
-	private Money createMoney(){
+	private Money createMoney() {
 		String inputMoney = InputView.inputMoney();
 
 		return new Money(Converter.numberConverterBy(inputMoney));
@@ -47,22 +50,24 @@ public class LottoController {
 		return new CreationCount(money, Converter.numberConverterBy(inputManualCount));
 	}
 
-	private List<LottoTicket> createAutomaticLottoTickets(int automaticCount){
+	private List<LottoTicket> createAutomaticLottoTickets(int automaticCount) {
 		return IntStream.range(0, automaticCount)
 			.mapToObj(i -> BallFactory.createRandomSixBalls())
-			.map(LottoTicket::new)
 			.collect(Collectors.toList());
 	}
 
-	private List<LottoTicket> createManualLottoTickets(List<String> manualLottoBallNumbers){
+	private List<LottoTicket> createManualLottoTickets(int manualCount) {
+		List<String> manualLottoBallNumbers = IntStream.range(0, manualCount)
+			.mapToObj(n -> InputView.inputManualNumber())
+			.collect(Collectors.toList());
+
 		return manualLottoBallNumbers.stream()
 			.map(Converter::numberListConverterBy)
 			.map(BallFactory::createManualSixBalls)
-			.map(LottoTicket::new)
 			.collect(Collectors.toList());
 	}
 
-	private WinningBalls createWinningBalls(){
+	private WinningBalls createWinningBalls() {
 		String winningBallNumbers = InputView.inputWinningBalls();
 		String bonusBall = InputView.inputBonusBall();
 
@@ -70,7 +75,7 @@ public class LottoController {
 			BallFactory.of(Converter.numberConverterBy(bonusBall)));
 	}
 
-	private List<Ball> createWinningBallsBy(String winningBallNumbers){
+	private LottoTicket createWinningBallsBy(String winningBallNumbers) {
 		return BallFactory.createManualSixBalls(
 			Converter.numberListConverterBy(winningBallNumbers)
 		);

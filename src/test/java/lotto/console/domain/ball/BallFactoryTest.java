@@ -36,13 +36,13 @@ public class BallFactoryTest {
 	@DisplayName("6개의 자동 로또볼을 생성하는 테스트")
 	@Test
 	void createRandomSixBalls(){
-		assertThat(BallFactory.createRandomSixBalls()).hasSize(6);
+		assertThat(BallFactory.createRandomSixBalls().getBalls()).hasSize(6);
 	}
 
 	@DisplayName("6개의 수동 로또 볼을 생성하는 테스트")
 	@Test
 	void createManualSixBalls(){
-		assertThat(BallFactory.createManualSixBalls(Converter.numberListConverterBy("1,2,3,4,5,6"))).containsAll(
+		assertThat(BallFactory.createManualSixBalls(Converter.numberListConverterBy("1,2,3,4,5,6")).getBalls()).containsAll(
 			Arrays.asList(BallFactory.of(1),
 				BallFactory.of(2),
 				BallFactory.of(3),

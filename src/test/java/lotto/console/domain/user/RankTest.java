@@ -33,8 +33,8 @@ public class RankTest {
 			BallFactory.createManualSixBalls(winningBallNumbers),
 			BallFactory.of(7));
 
-		LottoTicket lottoTicket = new LottoTicket(BallFactory.createManualSixBalls(
-			Converter.numberListConverterBy(lottoTicketNumbers))
+		LottoTicket lottoTicket = BallFactory.createManualSixBalls(
+			Converter.numberListConverterBy(lottoTicketNumbers)
 		);
 
 		assertThat(Rank.of(lottoTicket, winningBalls)).isEqualTo(rank);

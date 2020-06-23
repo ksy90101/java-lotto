@@ -46,7 +46,7 @@ public class UserTest {
 	}
 
 	private WinningBalls createWinningBalls() {
-		List<Ball> winningBalls = BallFactory.createManualSixBalls(
+		LottoTicket winningBalls = BallFactory.createManualSixBalls(
 			Converter.numberListConverterBy("1,2,3,4,5,6"));
 		return new WinningBalls(winningBalls, BallFactory.of(7));
 	}
@@ -58,7 +58,6 @@ public class UserTest {
 		return lottoTicketNumbers.stream()
 			.map(Converter::numberListConverterBy)
 			.map(BallFactory::createManualSixBalls)
-			.map(LottoTicket::new)
 			.collect(Collectors.toList());
 	}
 }
