@@ -6,7 +6,9 @@ import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 import lotto.console.converter.Converter;
+import lotto.console.domain.ball.Ball;
 import lotto.console.domain.ball.BallFactory;
+import lotto.console.domain.ball.WinningBalls;
 import lotto.console.domain.ticket.LottoTicket;
 import lotto.console.domain.user.CreationCount;
 import lotto.console.domain.user.Money;
@@ -26,6 +28,7 @@ public class LottoController {
 			createManualLottoTickets(manualLottoBallNumbers).stream()
 		).collect(Collectors.toList()));
 		OutputView.printLottoTicket(user.getLottoTickets());
+		WinningBalls winningBalls = createWinningBalls();
 	}
 
 	private Money createMoney(){
@@ -52,5 +55,19 @@ public class LottoController {
 			.map(BallFactory::createManualSixBalls)
 			.map(LottoTicket::new)
 			.collect(Collectors.toList());
+	}
+
+	private WinningBalls createWinningBalls(){
+		String winningBallNumbers = InputView.inputWinningBalls();
+		String bonusBall = InputView.inputBonusBall();
+
+		return new WinningBalls(createWinningBallsBy(winningBallNumbers),
+			BallFactory.of(Converter.numberConverterBy(bonusBall)));
+	}
+
+	private List<Ball> createWinningBallsBy(String winningBallNumbers){
+		return BallFactory.createManualSixBalls(
+			Converter.numberListConverterBy(winningBallNumbers)
+		);
 	}
 }
