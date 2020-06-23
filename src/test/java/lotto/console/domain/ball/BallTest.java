@@ -19,7 +19,7 @@ public class BallTest {
 	@DisplayName("로또볼이 1 ~ 45가 아닌 수가 생성되면 예외처리")
 	@ParameterizedTest
 	@ValueSource(ints = {0, 46})
-	void validateBetweenOneAndFortyFive(int ballNumber){
+	void validateBetweenOneAndFortyFive(int ballNumber) {
 		assertThatThrownBy(() -> new Ball(ballNumber)).isInstanceOf(IllegalArgumentException.class)
 			.hasMessage("로또 볼은 1 ~ 45까지만 가능합니다. number = " + ballNumber);
 	}

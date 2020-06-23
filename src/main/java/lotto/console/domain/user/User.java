@@ -1,5 +1,6 @@
 package lotto.console.domain.user;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -7,6 +8,7 @@ import lotto.console.domain.ball.WinningBalls;
 import lotto.console.domain.ticket.LottoTicket;
 
 public class User {
+
 	private final Money money;
 	private final CreationCount creationCount;
 	private final List<LottoTicket> lottoTickets;
@@ -18,10 +20,10 @@ public class User {
 		this.lottoTickets = lottoTickets;
 	}
 
-	public List<Rank> calculateRanks(WinningBalls winningBalls){
-		return lottoTickets.stream()
+	public List<Rank> calculateRanks(final WinningBalls winningBalls) {
+		return Collections.unmodifiableList(lottoTickets.stream()
 			.map(lottoTicket -> Rank.of(lottoTicket, winningBalls))
-			.collect(Collectors.toList());
+			.collect(Collectors.toList()));
 	}
 
 	public Money getMoney() {
@@ -33,7 +35,6 @@ public class User {
 	}
 
 	public List<LottoTicket> getLottoTickets() {
-		return lottoTickets;
+		return Collections.unmodifiableList(lottoTickets);
 	}
 }
-

@@ -2,8 +2,8 @@ package lotto.console.domain.ball;
 
 public class Ball {
 
-	private static final int MIN_BALL_NUMBER = 1;
-	private static final int MAX_BALL_NUMBER = 45;
+	protected static final int MIN_BALL_NUMBER = 1;
+	protected static final int MAX_BALL_NUMBER = 45;
 
 	private final int number;
 

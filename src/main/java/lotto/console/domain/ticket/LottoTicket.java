@@ -5,6 +5,7 @@ import java.util.List;
 import lotto.console.domain.ball.Ball;
 
 public class LottoTicket {
+
 	private final List<Ball> balls;
 
 	public LottoTicket(final List<Ball> balls) {

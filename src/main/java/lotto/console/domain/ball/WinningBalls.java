@@ -6,6 +6,7 @@ import java.util.List;
 import lotto.console.domain.ticket.LottoTicket;
 
 public class WinningBalls {
+
 	private final LottoTicket winningBalls;
 	private final Ball bonusBall;
 

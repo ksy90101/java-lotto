@@ -26,7 +26,7 @@ public class ResultTest {
 	@CsvSource(value = {
 		"FIRST:0", "SECOND:1", "THIRD:2", "FOURTH:0", "FIFTH:1", "NO:3"
 	}, delimiter = ':')
-	void ㄱ(Rank rank, int size){
+	void ㄱ(Rank rank, int size) {
 		List<Rank> ranks = Arrays.asList(
 			Rank.SECOND, Rank.THIRD, Rank.THIRD, Rank.FIFTH, Rank.NO, Rank.NO, Rank.NO
 		);

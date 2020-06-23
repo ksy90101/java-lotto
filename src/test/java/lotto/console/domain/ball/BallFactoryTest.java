@@ -14,6 +14,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 import lotto.console.converter.Converter;
 
 public class BallFactoryTest {
+
 	@DisplayName("1 ~ 45의 로또 볼이 생성되는지 확인하는 테스트")
 	@ParameterizedTest
 	@MethodSource("rangeProvider")

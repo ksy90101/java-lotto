@@ -6,6 +6,7 @@ import lotto.console.domain.ball.WinningBalls;
 import lotto.console.domain.ticket.LottoTicket;
 
 public enum Rank {
+
 	FIRST(2_000_000_000, 6),
 	SECOND(30_000_000, 5),
 	THIRD(1_500_000, 5),
@@ -39,9 +40,10 @@ public enum Rank {
 		if (rank != Rank.SECOND) {
 			return true;
 		}
+
 		return lottoTicket.getBalls()
 			.stream()
-			.anyMatch(n -> n == winningBalls.getBonusBall());
+			.anyMatch(ball -> ball.equals(winningBalls.getBonusBall()));
 	}
 
 	public int getWinningMoney() {

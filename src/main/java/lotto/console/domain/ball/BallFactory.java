@@ -1,27 +1,26 @@
 package lotto.console.domain.ball;
 
 import static java.util.stream.Collectors.*;
+import static lotto.console.domain.ball.Ball.*;
 
 import java.util.List;
 import java.util.Random;
-import java.util.stream.Collector;
-import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 import lotto.console.domain.ticket.LottoTicket;
 
 public class BallFactory {
 
-	private static final List<Ball> balls = IntStream.range(1, 46)
+	private static final int LOTTO_TICKET_SIZE = 6;
+	private static final List<Ball> balls = IntStream.range(MIN_BALL_NUMBER, MAX_BALL_NUMBER + 1)
 		.mapToObj(Ball::new)
 		.collect(toList());
-	private static final int LOTTO_TICKET_SIZE = 6;
 
 	private BallFactory() {
 
 	}
 
-	public static Ball of(int ballNumber) {
+	public static Ball of(final int ballNumber) {
 		return balls.stream()
 			.filter(ball -> ball.getNumber() == ballNumber)
 			.findFirst()
@@ -29,7 +28,7 @@ public class BallFactory {
 	}
 
 	public static LottoTicket createRandomSixBalls() {
-		Random random = new Random();
+		final Random random = new Random();
 
 		return random.ints(1, 46).
 			distinct()
@@ -48,13 +47,13 @@ public class BallFactory {
 			.collect(collectingAndThen(toList(), LottoTicket::new));
 	}
 
-	public static void validateBallNumbersSizeNotSix(List<Integer> ballNumbers){
-		if(ballNumbers.size() != LOTTO_TICKET_SIZE) {
+	public static void validateBallNumbersSizeNotSix(final List<Integer> ballNumbers) {
+		if (ballNumbers.size() != LOTTO_TICKET_SIZE) {
 			throw new IllegalArgumentException("로또 번호가 6개가 아닙니다. ballNumbers = " + ballNumbers);
 		}
 	}
 
-	private static void validateBallNumbersReduplication(List<Integer> ballNumbers) {
+	private static void validateBallNumbersReduplication(final List<Integer> ballNumbers) {
 		long ballNumberSize = ballNumbers.stream()
 			.distinct()
 			.count();

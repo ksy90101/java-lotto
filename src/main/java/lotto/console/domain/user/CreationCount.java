@@ -1,6 +1,7 @@
 package lotto.console.domain.user;
 
 public class CreationCount {
+
 	private final int totalCount;
 	private final int automaticCount;
 	private final int manualCount;
@@ -21,5 +22,5 @@ public class CreationCount {
 
 	public int getManualCount() {
 		return manualCount;
-	}
+	}bㅎ
 }

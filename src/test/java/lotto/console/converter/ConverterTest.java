@@ -10,6 +10,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 public class ConverterTest {
+
 	@DisplayName("제대로 숫자 변환을 하는지 확인하는 테스트")
 	@Test
 	void numberConverterBy() {
@@ -27,6 +28,6 @@ public class ConverterTest {
 	@DisplayName(",을 기준으로 숫자가 들어왔을 경우 숫자로 변환후 리스트를 생성하는 테스트")
 	@Test
 	void numberListConverterBy() {
-		assertThat(Converter.numberListConverterBy("1,2,3,4,5,6")).containsAll(Arrays.asList(1,2,3,4,5,6));
+		assertThat(Converter.numberListConverterBy("1,2,3,4,5,6")).containsAll(Arrays.asList(1, 2, 3, 4, 5, 6));
 	}
 }

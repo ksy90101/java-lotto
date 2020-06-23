@@ -1,5 +1,6 @@
 package lotto.console.controller;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
@@ -59,9 +60,9 @@ public class LottoController {
 	}
 
 	private List<LottoTicket> createAutomaticLottoTickets(final int automaticCount) {
-		return IntStream.range(MIN_LOTTO_TICKET_COUNT, automaticCount)
+		return Collections.unmodifiableList(IntStream.range(MIN_LOTTO_TICKET_COUNT, automaticCount)
 			.mapToObj(i -> BallFactory.createRandomSixBalls())
-			.collect(Collectors.toList());
+			.collect(Collectors.toList()));
 	}
 
 	private List<LottoTicket> createManualLottoTickets(final int manualCount) {
@@ -71,10 +72,11 @@ public class LottoController {
 			.mapToObj(i -> InputView.inputManualNumber())
 			.collect(Collectors.toList());
 
-		return manualLottoBallNumbers.stream()
+		return Collections.unmodifiableList(manualLottoBallNumbers
+			.stream()
 			.map(Converter::numberListConverterBy)
 			.map(BallFactory::createManualSixBalls)
-			.collect(Collectors.toList());
+			.collect(Collectors.toList()));
 	}
 
 	private WinningBalls createWinningBalls() {
