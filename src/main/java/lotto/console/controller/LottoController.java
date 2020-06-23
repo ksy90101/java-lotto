@@ -27,7 +27,7 @@ public class LottoController {
 	public void run() {
 		try {
 			User user = createUser();
-			OutputView.printLottoTicket(user.getLottoTickets());
+			OutputView.printLottoTicket(user.getLottoTickets(), user.getCreationCount());
 			WinningBalls winningBalls = createWinningBalls();
 			List<Rank> ranks = user.calculateRanks(winningBalls);
 			Result result = new Result(user.getMoney(), ranks);

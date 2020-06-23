@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 
 import lotto.console.domain.ball.Ball;
 import lotto.console.domain.ticket.LottoTicket;
+import lotto.console.domain.user.CreationCount;
 import lotto.console.domain.user.Rank;
 import lotto.console.domain.user.Result;
 
@@ -16,7 +17,10 @@ public class OutputView {
 		System.out.println("수동으로 구매할 번호를 입력해 주세요.");
 	}
 
-	public static void printLottoTicket(final List<LottoTicket> lottoTickets) {
+	public static void printLottoTicket(final List<LottoTicket> lottoTickets, CreationCount creationCount) {
+		System.out.printf("수동으로 %d장, 자동으로 %d개를 구매했습니다.\n",
+			creationCount.getManualCount(), creationCount.getAutomaticCount());
+
 		for (LottoTicket lottoTicket : lottoTickets) {
 			System.out.println(joinLottoTicketWithBracket(lottoTicket));
 		}
