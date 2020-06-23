@@ -44,6 +44,10 @@ public enum Rank {
 			.anyMatch(n -> n == winningBalls.getBonusBall());
 	}
 
+	public int getWinningMoney() {
+		return winningMoney;
+	}
+
 	public int getWinningCount() {
 		return winningCount;
 	}
