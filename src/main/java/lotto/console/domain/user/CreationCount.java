@@ -1,13 +1,18 @@
 package lotto.console.domain.user;
 
+import java.util.Objects;
+
 public class CreationCount {
+
+	private static final int TOTAL_COUNT_PER = 1000;
 
 	private final int totalCount;
 	private final int automaticCount;
 	private final int manualCount;
 
 	public CreationCount(final Money money, final int manualCount) {
-		this.totalCount = money.getMoney() / 1000;
+		Objects.requireNonNull(money);
+		this.totalCount = money.getMoney() / TOTAL_COUNT_PER;
 		validateNegativeManualCount(manualCount);
 		validateGreaterManualCountThanTotalCount(this.totalCount, manualCount);
 		this.manualCount = manualCount;

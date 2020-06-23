@@ -1,6 +1,7 @@
 package lotto.console.domain.user;
 
 import java.util.List;
+import java.util.Objects;
 
 public class Result {
 
@@ -10,6 +11,7 @@ public class Result {
 	private final List<Rank> ranks;
 
 	public Result(final Money money, final List<Rank> ranks) {
+		Objects.requireNonNull(money);
 		this.money = money;
 		this.ranks = ranks;
 	}

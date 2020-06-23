@@ -2,6 +2,7 @@ package lotto.console.domain.user;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 import lotto.console.domain.ball.WinningBalls;
@@ -15,6 +16,8 @@ public class User {
 
 	public User(final Money money, final CreationCount creationCount,
 		final List<LottoTicket> lottoTickets) {
+		Objects.requireNonNull(money);
+		Objects.requireNonNull(creationCount);
 		this.money = money;
 		this.creationCount = creationCount;
 		this.lottoTickets = lottoTickets;
