@@ -6,12 +6,12 @@ import lotto.console.domain.ball.WinningBalls;
 import lotto.console.domain.ticket.LottoTicket;
 
 public enum Rank {
-	FIRST_RANK(2_000_000_000, 6),
-	SECOND_RANK(30_000_000, 5),
-	THIRD_RANK(1_500_000, 5),
-	FOURTH_RANK(50_000, 4),
-	FIFTH_RANK(5_000, 3),
-	NO_RANK(0, 0);
+	FIRST(2_000_000_000, 6),
+	SECOND(30_000_000, 5),
+	THIRD(1_500_000, 5),
+	FOURTH(50_000, 4),
+	FIFTH(5_000, 3),
+	NO(0, 0);
 
 	private final int winningMoney;
 	private final int winningCount;
@@ -32,11 +32,11 @@ public enum Rank {
 			.filter(rank -> rank.getWinningCount() == winningCount)
 			.filter(rank -> isSecond(rank, lottoTicket, winningBalls))
 			.findFirst()
-			.orElseGet(() -> Rank.NO_RANK);
+			.orElseGet(() -> Rank.NO);
 	}
 
 	private static boolean isSecond(final Rank rank, final LottoTicket lottoTicket, final WinningBalls winningBalls) {
-		if (rank != Rank.SECOND_RANK) {
+		if (rank != Rank.SECOND) {
 			return true;
 		}
 		return lottoTicket.getBalls()

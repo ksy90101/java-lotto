@@ -18,18 +18,22 @@ public class User {
 		this.lottoTickets = lottoTickets;
 	}
 
-	public int getMoney() {
-		return money.getMoney();
-	}
-
-	public List<LottoTicket> getLottoTickets() {
-		return lottoTickets;
-	}
-
 	public List<Rank> calculateRanks(WinningBalls winningBalls){
 		return lottoTickets.stream()
 			.map(lottoTicket -> Rank.of(lottoTicket, winningBalls))
 			.collect(Collectors.toList());
+	}
+
+	public int getMoney() {
+		return money.getMoney();
+	}
+
+	public CreationCount getCreationCount() {
+		return creationCount;
+	}
+
+	public List<LottoTicket> getLottoTickets() {
+		return lottoTickets;
 	}
 }
 

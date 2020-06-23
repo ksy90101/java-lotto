@@ -20,14 +20,9 @@ public class RankTest {
 	@DisplayName("각 등수를 확인하는 테스트")
 	@ParameterizedTest
 	@CsvSource(value = {
-		"1,2,3,4,5,6:FIRST_RANK",
-		"1,2,3,4,5,7:SECOND_RANK",
-		"1,2,3,4,5,10:THIRD_RANK",
-		"1,2,3,4,8,9:FOURTH_RANK",
-		"1,2,3,10,11,12:FIFTH_RANK",
-		"1,2,10,11,12,13:NO_RANK",
-		"1,10,11,12,13,14:NO_RANK",
-		"10,11,12,13,14,15:NO_RANK"
+		"1,2,3,4,5,6:FIRST", "1,2,3,4,5,7:SECOND", "1,2,3,4,5,10:THIRD",
+		"1,2,3,4,8,9:FOURTH", "1,2,3,10,11,12:FIFTH", "1,2,10,11,12,13:NO",
+		"1,10,11,12,13,14:NO", "10,11,12,13,14,15:NO"
 	}, delimiter = ':')
 	void findRank(String lottoTicketNumbers, Rank rank) {
 		List<Integer> winningBallNumbers = IntStream.range(1, 7)

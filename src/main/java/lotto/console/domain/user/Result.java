@@ -1,7 +1,5 @@
 package lotto.console.domain.user;
 
-import java.math.BigInteger;
-import java.util.Arrays;
 import java.util.List;
 
 public class Result {
