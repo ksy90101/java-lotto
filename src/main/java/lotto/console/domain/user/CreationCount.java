@@ -15,15 +15,15 @@ public class CreationCount {
 	}
 
 	private void validateGreaterManualCountThanTotalCount(int totalCount, int manualCount) {
-		if(totalCount < manualCount){
+		if (totalCount < manualCount) {
 			throw new IllegalArgumentException(
 				String.format("총 횟수에 비해 수동 입력값이 큽니다. totalCount = %d, manualCount = %d",
 					totalCount, manualCount));
 		}
 	}
 
-	private void validateNegativeManualCount(int manualCount){
-		if(manualCount < 0){
+	private void validateNegativeManualCount(final int manualCount) {
+		if (manualCount < 0) {
 			throw new IllegalArgumentException("수동 구매 입력 횟수는 음수가 될 수 없습니다. manualCount = " + manualCount);
 		}
 	}

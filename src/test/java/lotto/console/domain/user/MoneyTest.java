@@ -20,4 +20,11 @@ public class MoneyTest {
 		assertThatThrownBy(() -> new Money(1100)).isInstanceOf(IllegalArgumentException.class)
 			.hasMessage("천원 단위로만 입력이 가능합니다. money = 1100");
 	}
+
+	@DisplayName("금액이 음수일 경우 예외처리")
+	@Test
+	void validateNegativeMoney() {
+		assertThatThrownBy(() -> new Money(-1000)).isInstanceOf(IllegalArgumentException.class)
+			.hasMessage("금액은 음수가 될 수 없습니다. money = -1000");
+	}
 }
