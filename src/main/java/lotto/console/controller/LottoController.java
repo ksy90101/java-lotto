@@ -12,6 +12,8 @@ import lotto.console.domain.ball.WinningBalls;
 import lotto.console.domain.ticket.LottoTicket;
 import lotto.console.domain.user.CreationCount;
 import lotto.console.domain.user.Money;
+import lotto.console.domain.user.Rank;
+import lotto.console.domain.user.Result;
 import lotto.console.domain.user.User;
 import lotto.console.view.InputView;
 import lotto.console.view.OutputView;
@@ -29,6 +31,9 @@ public class LottoController {
 		).collect(Collectors.toList()));
 		OutputView.printLottoTicket(user.getLottoTickets());
 		WinningBalls winningBalls = createWinningBalls();
+		List<Rank> ranks = user.calculateRanks(winningBalls);
+		Result result = new Result(money, ranks);
+		OutputView.printResult(result);
 	}
 
 	private Money createMoney(){

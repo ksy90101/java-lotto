@@ -1,6 +1,7 @@
 package lotto.console.domain.user;
 
 import java.math.BigInteger;
+import java.util.Arrays;
 import java.util.List;
 
 public class Result {
@@ -24,5 +25,11 @@ public class Result {
 		return ranks.stream()
 			.mapToInt(Rank::getWinningMoney)
 			.sum();
+	}
+
+	public long sizeBy(Rank rank){
+		return ranks.stream()
+			.filter(rank::equals)
+			.count();
 	}
 }
