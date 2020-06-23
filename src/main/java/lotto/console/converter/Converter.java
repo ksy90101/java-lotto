@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Converter {
+
 	private final static String NUMBER_LIST_DELIMITER = ",";
 
 	public static int numberConverterBy(final String value){

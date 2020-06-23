@@ -16,7 +16,6 @@ public class InputView {
 	}
 
 	public static String inputManualNumber() {
-		System.out.println("수동으로 구매할 번호를 입력해 주세요.");
 		return scanner.nextLine();
 	}
 

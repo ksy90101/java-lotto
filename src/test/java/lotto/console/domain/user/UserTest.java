@@ -25,9 +25,8 @@ public class UserTest {
 		CreationCount creationCount = new CreationCount(money, 5);
 		List<LottoTicket> lottoTickets = createLottoTickets();
 		User user = new User(money, creationCount, lottoTickets);
-
 		assertAll(
-			() -> assertThat(user.getMoney()).isEqualTo(10000),
+			() -> assertThat(user.getMoney()).isEqualTo(money),
 			() -> assertThat(user.getCreationCount()).isEqualTo(creationCount),
 			() -> assertThat(user.getLottoTickets()).containsAll(lottoTickets)
 		);

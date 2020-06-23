@@ -24,8 +24,8 @@ public class User {
 			.collect(Collectors.toList());
 	}
 
-	public int getMoney() {
-		return money.getMoney();
+	public Money getMoney() {
+		return money;
 	}
 
 	public CreationCount getCreationCount() {

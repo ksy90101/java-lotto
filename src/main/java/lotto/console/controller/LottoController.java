@@ -19,24 +19,32 @@ import lotto.console.view.InputView;
 import lotto.console.view.OutputView;
 
 public class LottoController {
-	private final static Logger logger = Logger.getLogger("logger");
+
+	private final static int MIN_LOTTO_TICKET_COUNT = 0;
+
+	private final Logger logger = Logger.getLogger("logger");
 
 	public void run() {
 		try {
-			Money money = createMoney();
-			CreationCount creationCount = createCreationCount(money);
-			User user = new User(money, creationCount, Stream.concat(
-				createAutomaticLottoTickets(creationCount.getAutomaticCount()).stream(),
-				createManualLottoTickets(creationCount.getManualCount()).stream()
-			).collect(Collectors.toList()));
+			User user = createUser();
 			OutputView.printLottoTicket(user.getLottoTickets());
 			WinningBalls winningBalls = createWinningBalls();
 			List<Rank> ranks = user.calculateRanks(winningBalls);
-			Result result = new Result(money, ranks);
+			Result result = new Result(user.getMoney(), ranks);
 			OutputView.printResult(result);
 		} catch (IllegalArgumentException e) {
 			logger.warning(e.getMessage());
 		}
+	}
+
+	private User createUser() {
+		Money money = createMoney();
+		CreationCount creationCount = createCreationCount(money);
+
+		return new User(money, creationCount, Stream.concat(
+			createAutomaticLottoTickets(creationCount.getAutomaticCount()).stream(),
+			createManualLottoTickets(creationCount.getManualCount()).stream()
+		).collect(Collectors.toList()));
 	}
 
 	private Money createMoney() {
@@ -45,20 +53,22 @@ public class LottoController {
 		return new Money(Converter.numberConverterBy(inputMoney));
 	}
 
-	private CreationCount createCreationCount(Money money) {
+	private CreationCount createCreationCount(final Money money) {
 		String inputManualCount = InputView.inputManualCount();
 		return new CreationCount(money, Converter.numberConverterBy(inputManualCount));
 	}
 
-	private List<LottoTicket> createAutomaticLottoTickets(int automaticCount) {
-		return IntStream.range(0, automaticCount)
+	private List<LottoTicket> createAutomaticLottoTickets(final int automaticCount) {
+		return IntStream.range(MIN_LOTTO_TICKET_COUNT, automaticCount)
 			.mapToObj(i -> BallFactory.createRandomSixBalls())
 			.collect(Collectors.toList());
 	}
 
-	private List<LottoTicket> createManualLottoTickets(int manualCount) {
-		List<String> manualLottoBallNumbers = IntStream.range(0, manualCount)
-			.mapToObj(n -> InputView.inputManualNumber())
+	private List<LottoTicket> createManualLottoTickets(final int manualCount) {
+		OutputView.printInputManualBalls();
+
+		List<String> manualLottoBallNumbers = IntStream.range(MIN_LOTTO_TICKET_COUNT, manualCount)
+			.mapToObj(i -> InputView.inputManualNumber())
 			.collect(Collectors.toList());
 
 		return manualLottoBallNumbers.stream()
@@ -75,7 +85,7 @@ public class LottoController {
 			BallFactory.of(Converter.numberConverterBy(bonusBall)));
 	}
 
-	private LottoTicket createWinningBallsBy(String winningBallNumbers) {
+	private LottoTicket createWinningBallsBy(final String winningBallNumbers) {
 		return BallFactory.createManualSixBalls(
 			Converter.numberListConverterBy(winningBallNumbers)
 		);

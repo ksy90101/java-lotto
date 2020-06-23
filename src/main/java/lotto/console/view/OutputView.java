@@ -12,20 +12,24 @@ import lotto.console.domain.user.Result;
 public class OutputView {
 	private static final String BALL_JOINING_DELIMITER = ",";
 
-	public static void printLottoTicket(List<LottoTicket> lottoTickets) {
+	public static void printInputManualBalls(){
+		System.out.println("수동으로 구매할 번호를 입력해 주세요.");
+	}
+
+	public static void printLottoTicket(final List<LottoTicket> lottoTickets) {
 		for (LottoTicket lottoTicket : lottoTickets) {
 			System.out.println(joinLottoTicketWithBracket(lottoTicket));
 		}
 	}
 
-	public static void printResult(Result result){
+	public static void printResult(final Result result){
 		for (Rank rank : Rank.values()){
 			System.out.println(joinRankInfo(rank, result.sizeBy(rank)));
 		}
 		System.out.printf("총 수익률은 %f%%입니다.", result.calculateEarningRate());
 	}
 
-	private static String joinRankInfo(Rank rank, long rankPersonnel){
+	private static String joinRankInfo(final Rank rank, final long rankPersonnel){
 		StringBuilder stringBuilder = new StringBuilder();
 		stringBuilder.append(rank.getWinningCount())
 			.append("개 일치 (")
@@ -37,7 +41,7 @@ public class OutputView {
 		return stringBuilder.toString();
 	}
 
-	private static String joinLottoTicketWithBracket(LottoTicket lottoTicket) {
+	private static String joinLottoTicketWithBracket(final LottoTicket lottoTicket) {
 		StringBuilder stringBuilder = new StringBuilder();
 		stringBuilder.append("[")
 			.append(joinLottoBalls(lottoTicket))
@@ -46,7 +50,7 @@ public class OutputView {
 		return stringBuilder.toString();
 	}
 
-	private static String joinLottoBalls(LottoTicket lottoTicket) {
+	private static String joinLottoBalls(final LottoTicket lottoTicket) {
 		return lottoTicket.getBalls().stream()
 			.map(Ball::getNumber)
 			.map(Objects::toString)
