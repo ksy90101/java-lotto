@@ -25,4 +25,10 @@ public class BallFactory {
 		Collections.shuffle(balls);
 		return Collections.unmodifiableList(balls.subList(0, 6));
 	}
+
+	public static List<Ball> createManualSixBalls(List<Integer> ballNumbers){
+		return Collections.unmodifiableList(ballNumbers.stream()
+			.map(BallFactory::of)
+			.collect(Collectors.toList()));
+	}
 }

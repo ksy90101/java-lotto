@@ -2,6 +2,8 @@ package lotto.console.converter;
 
 import static org.assertj.core.api.Assertions.*;
 
+import java.util.Arrays;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -20,5 +22,11 @@ public class ConverterTest {
 	void numberConverterByNotNumber(String value) {
 		assertThatThrownBy(() -> Converter.numberConverterBy(value)).isInstanceOf(NumberFormatException.class)
 			.hasMessage("숫자만 입력 가능합니다. value = " + value);
+	}
+
+	@DisplayName(",을 기준으로 숫자가 들어왔을 경우 숫자로 변환후 리스트를 생성하는 테스트")
+	@Test
+	void numberListConverterBy() {
+		assertThat(Converter.numberListConverterBy("1,2,3,4,5,6")).containsAll(Arrays.asList(1,2,3,4,5,6));
 	}
 }
