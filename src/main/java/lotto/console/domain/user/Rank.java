@@ -25,9 +25,9 @@ public enum Rank {
 	public static Rank of(final LottoTicket lottoTicket, final WinningBalls winningBalls) {
 		long winningCount = winningBalls.getWinningBalls()
 			.stream()
-			.flatMap(n -> lottoTicket.getBalls()
+			.flatMap(ball -> lottoTicket.getBalls()
 				.stream()
-				.filter(n::equals)).count();
+				.filter(ball::equals)).count();
 
 		return Arrays.stream(Rank.values())
 			.filter(rank -> rank.getWinningCount() == winningCount &&
