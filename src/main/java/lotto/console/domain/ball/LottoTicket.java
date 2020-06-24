@@ -16,6 +16,10 @@ public class LottoTicket {
 		this.balls = balls;
 	}
 
+	public boolean isContains(Ball ball){
+		return balls.contains(ball);
+	}
+
 	private void validate(final List<Ball> balls) {
 		validateOverSix(balls);
 		validateBallNumbersReduplication(balls);
@@ -28,8 +32,7 @@ public class LottoTicket {
 		}
 	}
 
-
-	public void validateBallNumbersSizeNotSix(final List<Ball> balls) {
+	private void validateBallNumbersSizeNotSix(final List<Ball> balls) {
 		if (balls.size() != LOTTO_TICKET_SIZE) {
 			throw new IllegalArgumentException("로또 번호가 6개가 아닙니다. ballNumbers = " + balls);
 		}

@@ -30,14 +30,14 @@ public enum Rank {
 				.filter(n::equals)).count();
 
 		return Arrays.stream(Rank.values())
-			.filter(rank -> rank.getWinningCount() == winningCount)
-			.filter(rank -> isSecond(rank, lottoTicket, winningBalls))
+			.filter(rank -> rank.getWinningCount() == winningCount &&
+				rank.isSecond(lottoTicket, winningBalls))
 			.findFirst()
 			.orElseGet(() -> Rank.NO);
 	}
 
-	private static boolean isSecond(final Rank rank, final LottoTicket lottoTicket, final WinningBalls winningBalls) {
-		if (rank != Rank.SECOND) {
+	private boolean isSecond(final LottoTicket lottoTicket, final WinningBalls winningBalls) {
+		if (this != Rank.SECOND) {
 			return true;
 		}
 

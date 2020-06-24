@@ -13,7 +13,14 @@ public class WinningBalls {
 		Objects.requireNonNull(winningBalls);
 		Objects.requireNonNull(bonusBall);
 		this.winningBalls = winningBalls;
+		validateWinningBallsContainsBonusBall(bonusBall);
 		this.bonusBall = bonusBall;
+	}
+
+	private void validateWinningBallsContainsBonusBall(Ball bonusBall) {
+		if (winningBalls.isContains(bonusBall)) {
+			throw new IllegalArgumentException("보너스 볼과 당첨 번호가 중복될 수 없습니다.");
+		}
 	}
 
 	public List<Ball> getWinningBalls() {
