@@ -20,6 +20,7 @@ public class Converter {
 	public static List<Integer> numberListConverterBy(final String value) {
 		return Collections.unmodifiableList(Arrays
 			.stream(value.split(NUMBER_LIST_DELIMITER))
+			.map(String::trim)
 			.map(Converter::numberConverterBy)
 			.collect(Collectors.toList()));
 	}
