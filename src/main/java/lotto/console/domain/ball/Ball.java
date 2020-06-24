@@ -12,14 +12,14 @@ public class Ball {
 		this.number = number;
 	}
 
-	public int getNumber() {
-		return number;
-	}
-
 	public void validateBetweenOneAndFortyFive(final int number) {
 		if (number < MIN_BALL_NUMBER || number > MAX_BALL_NUMBER) {
 			throw new IllegalArgumentException("로또 볼은 1 ~ 45까지만 가능합니다. number = " + number);
 		}
+	}
+
+	public boolean isNumber(final int ballNumber) {
+		return this.number == ballNumber;
 	}
 
 	@Override

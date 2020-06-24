@@ -12,8 +12,8 @@ public class BallTest {
 	@DisplayName("로또 볼이 올바르게 생성되는지 확인하는 테스트")
 	@Test
 	void createCorrectBall() {
-		Ball ballTest = new Ball(1);
-		assertThat(ballTest.getNumber()).isEqualTo(1);
+		Ball ball = new Ball(1);
+		assertThat(ball).isNotNull();
 	}
 
 	@DisplayName("로또볼이 1 ~ 45가 아닌 수가 생성되면 예외처리")

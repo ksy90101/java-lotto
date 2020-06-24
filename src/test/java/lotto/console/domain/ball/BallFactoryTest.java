@@ -19,7 +19,7 @@ public class BallFactoryTest {
 	@ParameterizedTest
 	@MethodSource("rangeProvider")
 	void createCorrectBallBetweenOneAndFortyFive(int ballNumber) {
-		assertThat(BallFactory.of(ballNumber).getNumber()).isEqualTo(ballNumber);
+		assertThat(BallFactory.of(ballNumber).isNumber(ballNumber)).isTrue();
 	}
 
 	static IntStream rangeProvider() {

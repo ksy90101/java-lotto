@@ -19,7 +19,7 @@ public class ConverterTest {
 
 	@DisplayName("숫자가 아닌 다른 값이 들어왔을 경우 예외처리")
 	@ParameterizedTest
-	@ValueSource(strings = {"가", "a", "A", "-"})
+	@ValueSource(strings = {"가", "a", "A", "-", " ", ""})
 	void numberConverterByNotNumber(String value) {
 		assertThatThrownBy(() -> Converter.numberConverterBy(value)).isInstanceOf(NumberFormatException.class)
 			.hasMessage("숫자만 입력 가능합니다. value = " + value);

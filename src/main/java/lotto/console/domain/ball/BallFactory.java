@@ -19,7 +19,7 @@ public class BallFactory {
 
 	public static Ball of(final int ballNumber) {
 		return balls.stream()
-			.filter(ball -> ball.getNumber() == ballNumber)
+			.filter(ball -> ball.isNumber(ballNumber))
 			.findFirst()
 			.orElseThrow(() -> new IllegalArgumentException("로또 볼은 1 ~ 45까지만 있습니다. ballNumber = " + ballNumber));
 	}

@@ -12,7 +12,7 @@ import lotto.console.domain.user.Result;
 
 public class OutputView {
 
-	private static final String BALL_JOINING_DELIMITER = ",";
+	private static final String BALL_JOINING_DELIMITER = ", ";
 
 	public static void printInputManualBalls() {
 		System.out.println("수동으로 구매할 번호를 입력해 주세요.");
@@ -57,8 +57,7 @@ public class OutputView {
 
 	private static String joinLottoBalls(final LottoTicket lottoTicket) {
 		return lottoTicket.getBalls().stream()
-			.map(Ball::getNumber)
-			.map(Objects::toString)
+			.map(Ball::toString)
 			.collect(Collectors.joining(BALL_JOINING_DELIMITER));
 	}
 }
