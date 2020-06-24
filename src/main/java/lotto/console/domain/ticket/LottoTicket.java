@@ -1,5 +1,6 @@
 package lotto.console.domain.ticket;
 
+import java.util.Collections;
 import java.util.List;
 
 import lotto.console.domain.ball.Ball;
@@ -13,13 +14,13 @@ public class LottoTicket {
 		this.balls = balls;
 	}
 
-	private void validateOverSix(List<Ball> balls) {
+	private void validateOverSix(final List<Ball> balls) {
 		if (balls.size() != 6) {
 			throw new IllegalArgumentException("로또 한장 당 6개씩 가질 수 습니다. ballsSize = " + balls.size());
 		}
 	}
 
 	public List<Ball> getBalls() {
-		return balls;
+		return Collections.unmodifiableList(balls);
 	}
 }

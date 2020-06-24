@@ -3,6 +3,7 @@ package lotto.console.domain.ball;
 import static java.util.stream.Collectors.*;
 import static lotto.console.domain.ball.Ball.*;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.stream.IntStream;
@@ -32,6 +33,7 @@ public class BallFactory {
 			.ints(1, 46).
 			distinct()
 			.limit(6)
+			.sorted()
 			.mapToObj(BallFactory::of)
 			.collect(collectingAndThen(toList(), LottoTicket::new));
 
@@ -42,6 +44,7 @@ public class BallFactory {
 		validateBallNumbersReduplication(ballNumbers);
 
 		return ballNumbers.stream()
+			.sorted()
 			.map(BallFactory::of)
 			.collect(collectingAndThen(toList(), LottoTicket::new));
 	}
