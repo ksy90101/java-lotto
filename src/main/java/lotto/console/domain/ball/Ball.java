@@ -21,4 +21,9 @@ public class Ball {
 			throw new IllegalArgumentException("로또 볼은 1 ~ 45까지만 가능합니다. number = " + number);
 		}
 	}
+
+	@Override
+	public String toString() {
+		return "number=" + number;
+	}
 }

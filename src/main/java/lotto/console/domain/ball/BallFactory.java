@@ -3,7 +3,6 @@ package lotto.console.domain.ball;
 import static java.util.stream.Collectors.*;
 import static lotto.console.domain.ball.Ball.*;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.stream.IntStream;
@@ -18,7 +17,6 @@ public class BallFactory {
 		.collect(toList());
 
 	private BallFactory() {
-
 	}
 
 	public static Ball of(final int ballNumber) {
@@ -30,38 +28,18 @@ public class BallFactory {
 
 	public static LottoTicket createRandomSixBalls() {
 		return ThreadLocalRandom.current()
-			.ints(1, 46).
-			distinct()
+			.ints(MIN_BALL_NUMBER, MAX_BALL_NUMBER).
+				distinct()
 			.limit(6)
 			.sorted()
 			.mapToObj(BallFactory::of)
 			.collect(collectingAndThen(toList(), LottoTicket::new));
-
 	}
 
 	public static LottoTicket createManualSixBalls(final List<Integer> ballNumbers) {
-		validateBallNumbersSizeNotSix(ballNumbers);
-		validateBallNumbersReduplication(ballNumbers);
-
 		return ballNumbers.stream()
 			.sorted()
 			.map(BallFactory::of)
 			.collect(collectingAndThen(toList(), LottoTicket::new));
-	}
-
-	public static void validateBallNumbersSizeNotSix(final List<Integer> ballNumbers) {
-		if (ballNumbers.size() != LOTTO_TICKET_SIZE) {
-			throw new IllegalArgumentException("로또 번호가 6개가 아닙니다. ballNumbers = " + ballNumbers);
-		}
-	}
-
-	private static void validateBallNumbersReduplication(final List<Integer> ballNumbers) {
-		long ballNumberSize = ballNumbers.stream()
-			.distinct()
-			.count();
-
-		if (ballNumberSize != LOTTO_TICKET_SIZE) {
-			throw new IllegalArgumentException("중복된 로또 번호를 선택 했습니다. ballNumbers = " + ballNumbers);
-		}
 	}
 }
