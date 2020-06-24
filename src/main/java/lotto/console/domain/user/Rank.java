@@ -41,9 +41,7 @@ public enum Rank {
 			return true;
 		}
 
-		return lottoTicket.getBalls()
-			.stream()
-			.anyMatch(ball -> ball.equals(winningBalls.getBonusBall()));
+		return lottoTicket.isContains(winningBalls.getBonusBall());
 	}
 
 	public int getWinningMoney() {
