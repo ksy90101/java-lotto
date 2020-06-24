@@ -4,7 +4,7 @@ import static java.util.stream.Collectors.*;
 import static lotto.console.domain.ball.Ball.*;
 
 import java.util.List;
-import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 import java.util.stream.IntStream;
 
 import lotto.console.domain.ticket.LottoTicket;
@@ -28,9 +28,8 @@ public class BallFactory {
 	}
 
 	public static LottoTicket createRandomSixBalls() {
-		final Random random = new Random();
-
-		return random.ints(1, 46).
+		return ThreadLocalRandom.current()
+			.ints(1, 46).
 			distinct()
 			.limit(6)
 			.mapToObj(BallFactory::of)
@@ -38,7 +37,7 @@ public class BallFactory {
 
 	}
 
-	public static LottoTicket createManualSixBalls(List<Integer> ballNumbers) {
+	public static LottoTicket createManualSixBalls(final List<Integer> ballNumbers) {
 		validateBallNumbersSizeNotSix(ballNumbers);
 		validateBallNumbersReduplication(ballNumbers);
 
