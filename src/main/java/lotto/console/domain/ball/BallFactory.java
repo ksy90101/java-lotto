@@ -2,16 +2,14 @@ package lotto.console.domain.ball;
 
 import static java.util.stream.Collectors.*;
 import static lotto.console.domain.ball.Ball.*;
+import static lotto.console.domain.ball.LottoTicket.*;
 
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.stream.IntStream;
 
-import lotto.console.domain.ticket.LottoTicket;
-
 public class BallFactory {
 
-	private static final int LOTTO_TICKET_SIZE = 6;
 	private static final List<Ball> balls = IntStream.range(MIN_BALL_NUMBER, MAX_BALL_NUMBER + 1)
 		.mapToObj(Ball::new)
 		.collect(toList());
@@ -30,7 +28,7 @@ public class BallFactory {
 		return ThreadLocalRandom.current()
 			.ints(MIN_BALL_NUMBER, MAX_BALL_NUMBER).
 				distinct()
-			.limit(6)
+			.limit(LOTTO_TICKET_SIZE)
 			.sorted()
 			.mapToObj(BallFactory::of)
 			.collect(collectingAndThen(toList(), LottoTicket::new));

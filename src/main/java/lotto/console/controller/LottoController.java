@@ -10,7 +10,7 @@ import java.util.stream.Stream;
 import lotto.console.converter.Converter;
 import lotto.console.domain.ball.BallFactory;
 import lotto.console.domain.ball.WinningBalls;
-import lotto.console.domain.ticket.LottoTicket;
+import lotto.console.domain.ball.LottoTicket;
 import lotto.console.domain.user.CreationCount;
 import lotto.console.domain.user.Money;
 import lotto.console.domain.user.Rank;

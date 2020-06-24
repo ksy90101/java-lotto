@@ -1,4 +1,4 @@
-package lotto.console.domain.ticket;
+package lotto.console.domain.ball;
 
 import java.util.Collections;
 import java.util.List;
@@ -7,7 +7,7 @@ import lotto.console.domain.ball.Ball;
 
 public class LottoTicket {
 
-	private final static int LOTTO_TICKET_SIZE = 45;
+	protected final static int LOTTO_TICKET_SIZE = 6;
 
 	private final List<Ball> balls;
 

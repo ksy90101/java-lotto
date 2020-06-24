@@ -53,22 +53,4 @@ public class BallFactoryTest {
 				BallFactory.of(6))
 		);
 	}
-
-	@DisplayName("수동 로또 번호 입력 값 중에 중복이 있을 경우 예외처리")
-	@Test
-	void validateBallNumbersReduplication() {
-		assertThatThrownBy(() -> BallFactory.createManualSixBalls(
-			Converter.numberListConverterBy("1,1,2,3,4,5"))).isInstanceOf(IllegalArgumentException.class)
-			.hasMessage("중복된 로또 번호를 선택 했습니다. ballNumbers = [1, 1, 2, 3, 4, 5]");
-	}
-
-	@DisplayName("수동 로또 볼 입력 값이 6개가 아닌 경우 예외처리")
-	@ParameterizedTest
-	@ValueSource(strings = {"1,2,3,4,5", "1,2,3,4,5,6,7"})
-	void validateSizeNotSix(String ballNumbers) {
-		assertThatThrownBy(() -> BallFactory.createManualSixBalls(
-			Converter.numberListConverterBy((ballNumbers)
-			))).isInstanceOf(IllegalArgumentException.class)
-			.hasMessage("로또 번호가 6개가 아닙니다. ballNumbers = " + Converter.numberListConverterBy(ballNumbers));
-	}
 }

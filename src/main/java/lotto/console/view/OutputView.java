@@ -5,7 +5,7 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 import lotto.console.domain.ball.Ball;
-import lotto.console.domain.ticket.LottoTicket;
+import lotto.console.domain.ball.LottoTicket;
 import lotto.console.domain.user.CreationCount;
 import lotto.console.domain.user.Rank;
 import lotto.console.domain.user.Result;

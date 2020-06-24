@@ -9,8 +9,6 @@ import java.util.stream.IntStream;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import lotto.console.domain.ticket.LottoTicket;
-
 public class WinningBallsTest {
 
 	@DisplayName("당첨 번호가 제대로 생성되는지 확인하는 테스트")

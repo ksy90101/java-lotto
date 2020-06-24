@@ -4,8 +4,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
-import lotto.console.domain.ticket.LottoTicket;
-
 public class WinningBalls {
 
 	private final LottoTicket winningBalls;

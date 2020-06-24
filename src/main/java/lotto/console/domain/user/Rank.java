@@ -3,7 +3,7 @@ package lotto.console.domain.user;
 import java.util.Arrays;
 
 import lotto.console.domain.ball.WinningBalls;
-import lotto.console.domain.ticket.LottoTicket;
+import lotto.console.domain.ball.LottoTicket;
 
 public enum Rank {
 
