@@ -27,7 +27,7 @@ public class LottoTicket {
 	}
 
 	private void validateOverSix(final List<Ball> balls) {
-		if (balls.size() != 6) {
+		if (balls.size() != LOTTO_TICKET_SIZE) {
 			throw new IllegalArgumentException("로또 한장 당 6개씩 가질 수 습니다. ballsSize = " + balls.size());
 		}
 	}
